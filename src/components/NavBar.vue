@@ -2,8 +2,10 @@
   <nav
     class="navbar navbar-expand-lg position-sticky top-0 sticky-top"
     :style="{
-      backgroundColor: darkmode ? 'rgba(33, 37, 41, 0.4)' : 'rgba(255, 255, 255,0.4)',
-      zIndex: 10000
+      backgroundColor: darkmode
+        ? 'rgba(33, 37, 41, 0.4)'
+        : 'rgba(255, 255, 255,0.4)',
+      zIndex: 10000,
     }"
   >
     <div class="container-fluid bg-transparent">
@@ -76,10 +78,15 @@
             >
           </li>
           <li class="nav-item">
-            <button class="fs-5 me-0 ms-0 p-2 ms-2 mt-3" @click="$emit('toggle-dark'); clicked = !clicked" >
-              {{clicked? "Bright Mode🔆" : "Dark Mode🌙"}}
+            <button
+              class="fs-5 me-0 ms-0 p-2 ms-2 mt-3"
+              @click="
+                $emit('toggle-dark');
+                clicked = !clicked;
+              "
+            >
+              {{ clicked ? "Bright Mode🔆" : "Dark Mode🌙" }}
             </button>
-
           </li>
         </ul>
       </div>
@@ -89,7 +96,7 @@
 
 <script>
 export default {
-  props: ['darkmode'],
+  props: ["darkmode"],
   data() {
     return {
       name: "NavBar",

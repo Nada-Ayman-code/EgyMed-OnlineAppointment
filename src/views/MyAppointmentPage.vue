@@ -46,13 +46,13 @@ export default{
   },
   methods:{
     retreiveElements(){
-         this.cart= JSON.parse(localStorage.getItem("cart"));
+         this.cart= JSON.parse(localStorage.getItem("cart")) || [];
     },
     removeFromCart(cardid){
 
         let fil= this.cart.filter((item)=> item.doctor.id !== cardid);
         localStorage.setItem("cart", JSON.stringify(fil));
-        this.cart= JSON.parse(localStorage.getItem("cart"));
+        this.cart= JSON.parse(localStorage.getItem("cart")) || [];
     },
   },
   mounted(){

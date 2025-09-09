@@ -9,10 +9,7 @@
     <div
       class="row d-flex flex-column bg-dark vh-100 m-0 p-0 align-items-center justify-content-center"
     >
-      <h1
-        class="col-12 col-sm-10 text-white"
-        style="z-index: 9999"
-      >
+      <h1 class="col-12 col-sm-10 text-white" style="z-index: 9999">
         Book Your Doctor’s Appointment Easily
       </h1>
       <div
@@ -34,23 +31,30 @@
           @focus="dropDown = true"
           @blur="dropDown = false"
         />
-        <button class="btn btn-light border rounded-end-pill p-1" @click="showCard" >🔍</button>
+        <button
+          class="btn btn-light border rounded-end-pill p-1"
+          @click="showCard"
+        >
+          🔍
+        </button>
 
-            <docs v-if="selectedDoctor" :doctor="selectedDoctor" />
+        <docs v-if="selectedDoctor" :doctor="selectedDoctor" />
 
         <div
           v-show="dropDown"
           class="position-absolute border bg-white rounded"
-          style="left: 40%; right: 42%;"
+          style="left: 40%; right: 42%"
         >
           <ul class="bg-white" v-for="doc in filteredDoc" :key="doc.id">
-            <li class="btn list-group-item ms-0 me-4" style=" z-index: 99999;"  @mousedown="inputVal(doc.name)">
+            <li
+              class="btn list-group-item ms-0 me-4"
+              style="z-index: 99999"
+              @mousedown="inputVal(doc.name)"
+            >
               {{ doc.name || doc.specialty }}
             </li>
           </ul>
         </div>
-        
-
       </div>
     </div>
   </div>
@@ -58,10 +62,14 @@
   <div
     class="row m-0 align-items-center justify-content-center p-5 border-top border-bottom border-white"
   >
-    <h2 class="mt-3"
+    <h2
+      class="mt-3"
       :style="{
         color: darkmode ? 'rgb(255, 255, 255)' : 'rgba(33, 37, 41, 0.8)',
-      }">About</h2>
+      }"
+    >
+      About
+    </h2>
 
     <div
       class="col-12 col-sm-10 col-md-8 col-lg-10 p-4 container border border-white rounded fs-5 mb-5 mt-3 shadow-lg"
@@ -96,13 +104,20 @@
   </div>
   <div
     class="row m-0 p-5 align-items-center justify-content-center border-primary border-top border-bottom"
-     :style="{
-        backgroundColor: darkmode ? 'rgba(33, 37, 41, 0.8)' : 'rgba(33, 37, 41, 0.3)',
-      }"
+    :style="{
+      backgroundColor: darkmode
+        ? 'rgba(33, 37, 41, 0.8)'
+        : 'rgba(33, 37, 41, 0.3)',
+    }"
   >
-    <h2 class="mt-5 text-white"  :style="{
+    <h2
+      class="mt-5 text-white"
+      :style="{
         color: darkmode ? 'rgba(33, 37, 41, 0.8)' : 'rgb(255, 255, 255)',
-      }">Our Services</h2>
+      }"
+    >
+      Our Services
+    </h2>
 
     <div
       class="col-12 text-white col-sm-10 col-md-10 col-lg-10 p-4 container border border-white rounded fs-5 mb-0 mt-3 shadow-lg"
@@ -138,11 +153,11 @@
 </template>
 
 <script>
-import docs from '@/components/doctorCard.vue';
+import docs from "@/components/doctorCard.vue";
 
 export default {
-  props: ['darkmode'],
-  components:{
+  props: ["darkmode"],
+  components: {
     docs,
   },
   data() {
@@ -155,18 +170,18 @@ export default {
   },
   methods: {
     retrieve() {
-      this.doctors = JSON.parse(localStorage.getItem("doctors"));
+      this.doctors = JSON.parse(localStorage.getItem("doctors")) || [];
     },
-    inputVal(name){
-      this.searchBar= name;
-      this.dropDown= false;
+    inputVal(name) {
+      this.searchBar = name;
+      this.dropDown = false;
     },
-    showCard(){
-      let found = this.doctors.find((item)=> item.name === this.searchBar);
-      if(found){
-        this.selectedDoctor=found;
+    showCard() {
+      let found = this.doctors.find((item) => item.name === this.searchBar);
+      if (found) {
+        this.selectedDoctor = found;
       }
-      this.searchBar="";
+      this.searchBar = "";
     },
   },
   computed: {

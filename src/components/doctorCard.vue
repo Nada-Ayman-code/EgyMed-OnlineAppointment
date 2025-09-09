@@ -133,7 +133,7 @@ export default{
     },
     methods:{
           getDoctors(){
-            this.doctors= JSON.parse(localStorage.getItem("doctors"));
+            this.doctors= JSON.parse(localStorage.getItem("doctors")) || [];
           },
     openModal(card) {
    

@@ -11,13 +11,11 @@
 
     <div
       class="col-12 col-md-8 col-lg-8 d-flex flex-column align-items-center justify-content-center vh-100"
-      style="background-color: rgba(128,128,128, 0.2)"
+      style="background-color: rgba(128, 128, 128, 0.2)"
     >
       <h1 class="mb-5">👋 Welcome to Our Healthcare Platform</h1>
       <p>Please choose how you’d like to continue:</p>
-      <router-link
-        to="/doctor"
-        class="btn btn-lg p-3 btn-dark bg-black"
+      <router-link to="/doctor" class="btn btn-lg p-3 btn-dark bg-black"
         >👨‍⚕️ I’m a Doctor</router-link
       >
       <button
