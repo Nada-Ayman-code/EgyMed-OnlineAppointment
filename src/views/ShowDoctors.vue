@@ -10,7 +10,7 @@
         @focus="showSearchlist = true"
         @blur="showSearchlist = false"
       />
-      <button class="btn btn-light p-4 rounded-end-pill border">🔍</button>
+      <button @click="showcard" class="btn btn-light p-4 rounded-end-pill border">🔍</button>
 
       <div
         v-if="showSearchlist"
@@ -18,7 +18,7 @@
         style="z-index: 9999; left: 200px; top: 122px"
       >
         <ul class="bg-white me-3" v-for="doc in filteredSearch" :key="doc.id">
-          <li class="list-group-item btn">{{ doc.name }}</li>
+          <li class="list-group-item btn" @mousedown="BarName(doc.name)">{{ doc.name }}</li>
         </ul>
       </div>
     </div>
@@ -49,7 +49,8 @@
       <option value="Ophthalmologist">Ophthalmologist</option>
     </select>
 
-    <div v-if="filterBoolean">
+    <div v-if="filterBoolean && !foundDoc">
+        
       <div class="row justify-content-center align-items-center p-0 m-0 mt-5">
         <div
           class="card shadow-lg col-7 col-sm-6 col-md-5 col-lg-2 me-3 ms-4 g-3"
@@ -82,7 +83,8 @@
       </div>
     </div>
 
-    <div v-else-if="!filterBoolean">
+    <div v-else-if="!filterBoolean && !foundDoc">
+ 
       <div class="row justify-content-center align-items-center p-0 m-0 mt-5">
         <div
           class="card col-7 col-sm-6 col-md-6 col-lg-2 ms-4 g-3 shadow-lg"
@@ -115,6 +117,37 @@
       </div>
     </div>
 
+    <div v-if="foundDoc">
+       <div class="row justify-content-center align-items-center p-0 m-0 mt-5">
+        <div
+          class="card col-7 col-sm-6 col-md-6 col-lg-2 ms-4 g-3 shadow-lg"
+        >
+          <img v-bind:src="photo1" class="card-img-top mb-0" alt="1" />
+
+          <hr class="mb-0 mt-0" />
+
+          <div class="card-body text-center" style="height: 230px">
+            <h4 class="card-title">
+              <strong>{{ foundDoc.name }}</strong>
+            </h4>
+            <p class="card-text">
+              <b>Speciality:</b> {{ foundDoc.specialty }}<br />
+              Available Slots:<br />{{ foundDoc.available_slots[0] }}<br />
+              {{ foundDoc.available_slots[1] }}<br />
+              {{ foundDoc.available_slots[2] }}<br />
+              <small
+                ><b>{{ foundDoc.location }}</b></small
+              >
+            </p>
+          </div>
+
+          <button @click="openModal(card)" class="btn btn-dark mb-2">
+            Schedule Appointment
+          </button>
+        </div>
+      </div>
+    </div>
+      
     <div class="mb-5"></div>
     <div class="row">
       <div
@@ -314,6 +347,7 @@ export default {
       currpage: 1,
       loadPerPage: 5,
       pages: [],
+      foundDoc: null,
     };
   },
   methods: {
@@ -336,11 +370,6 @@ export default {
       }
     },
     openModal(card) {
-      if (!this.doctors.length) {
-        console.warn("Doctors not loaded yet!");
-        return;
-      }
-      // ... rest of your code
 
       this.error.name = "";
       this.error.email = "";
@@ -458,11 +487,9 @@ export default {
     },
 
     addandalert(card) {
-      let filt = this.doctors.find((item) => item.id === card.id);
-
-      filt.alert = !filt.alert;
+      card.alert = !card.alert;
       let stop = setInterval(() => {
-        filt.alert = !filt.alert;
+        card.alert = !card.alert;
         this.opened = false;
       }, 3000);
 
@@ -473,12 +500,25 @@ export default {
       this.AddToCart(card.id);
     },
     filter(specs) {
-      this.filterBoolean = false;
-      if (specs == "All") {
+      
+      if (specs === "All") {
+        this.filterBoolean = false;
         return this.filterBoolean;
       }
       this.filters = this.doctors.filter((item) => item.specialty === specs);
       this.filterBoolean = true;
+      this.foundDoc= null;
+    },
+    BarName(name){  
+               this.searchBar= name;
+               this.showSearchlist= false;
+    },
+    showcard(){
+          let found= this.doctors.find((item)=> item.name === this.searchBar);
+          if(found){
+            this.foundDoc= found;
+          }
+          this.searchBar="";
     },
   },
   computed: {
@@ -486,10 +526,6 @@ export default {
       return this.doctors.filter((item) =>
         item.name.toLowerCase().includes(this.searchBar.toLowerCase())
       );
-    },
-
-    disp() {
-      return this.loadPagebtn();
     },
     appearedDoctors() {
       let skip = (this.currpage - 1) * this.loadPerPage;

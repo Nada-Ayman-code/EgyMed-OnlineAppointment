@@ -5,11 +5,10 @@
        <div class="col-7 col-sm-6 col-md-4 col-lg-8 border border-secondary rounded p-5" v-if="cart.length===0" style="background-color: rgb(211,211,211);">
             <p>No Appointments Booked Yet.</p>
        </div>
-      <div class="col-7 col-sm-6 col-md-4 col-lg-8 border-secondary rounded p-5 " v-else-if="cart.length!==0" style="background-color: rgb(211,211,211);">
+      <div class="col-11 border-secondary rounded p-5 " v-else-if="cart.length!==0" style="background-color: rgb(211,211,211);">
         <div class="row justify-content-center align-items-center">
-            <div class="card col-12 col-sm-12 col-md-10 col-lg-4 ms-4 g-3" v-for="card in cart" :key="card.id">
+            <div class="card col-7 col-sm-6 col-md-5 col-lg-3 me-3 ms-4 g-4" v-for="card in cart" :key="card.id">
                               <img v-bind:src="photo1"
-              style="height: 280px;"
               class="card-img-top mb-0"
               alt="1"/>
 
@@ -26,7 +25,7 @@
                   <small>{{ card.doctor.location }}</small>
                 </p>
               </div>
-              <button @click.prevent="removeFromCart(card.doctor.id)" class="btn btn-secondary mb-3 me-2 ms-2">Cancel Appointment
+              <button @click.prevent="removeFromCart(card.doctor.id)" class="btn btn-secondary mb-2">Cancel Appointment
               </button>
               </div>
             </div>

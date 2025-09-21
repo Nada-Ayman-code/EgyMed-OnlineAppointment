@@ -1,16 +1,10 @@
 <template>
 
-  <div class="row justify-content-center align-items-center p-0 m-0 mt-5">
+       <div class="row justify-content-center align-items-center p-0 m-0 mt-5">
   <div
       class="card col-7 col-sm-6 col-md-6 col-lg-3 shadow-lg"
     >
-      <!-- <img
-        v-bind:src="photo1"
-        class="card-img-top mb-0"
-        alt="1" 
-      />
 
-      <hr class="mb-0 mt-0" /> -->
 
       <div class="card-body text-center" style="height: 230px">
         <h4 class="card-title">
@@ -28,12 +22,11 @@
       <button @click="openModal(doctor)" class="btn btn-dark mb-2">
         Schedule Appointment
       </button>
-
       </div>
-    </div>
+      </div>
 
      <div class="row">
-  <div class="col-5 col-sm-6 col-md-4 col-lg-2 modal" style="background-color: rgba(0,0,0,0.5); z-index: 9999; display:block;" v-show="opened">
+  <div class="col-5 col-sm-6 col-md-4 col-lg-2 modal" style="background-color: rgba(0,0,0,0.5); z-index: 99999; display:block;" v-show="opened">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -132,17 +125,11 @@ export default{
          }
     },
     methods:{
-          getDoctors(){
-            this.doctors= JSON.parse(localStorage.getItem("doctors")) || [];
-          },
+      getdoctors(){
+           this.doctors= JSON.parse(localStorage.getItem("doctors")) || [];
+      },
     openModal(card) {
    
-  if (!this.doctors.length) {
-    console.warn("Doctors not loaded yet!");
-    return;
-  }
-  // ... rest of your code
-
       this.error.name= "";
       this.error.email= "";
       this.error.phone= "";
@@ -159,7 +146,6 @@ export default{
    AddToCart(doctorid){
   let appointment = JSON.parse(localStorage.getItem("doctors")) || [];
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
 
         let doctor= appointment.find((item)=> item.id === doctorid);
 
@@ -185,10 +171,9 @@ export default{
         }
         localStorage.setItem("cart", JSON.stringify(cart));
     },
+
   buttonvalidationForm(card){
       console.log("hello");
-
-      
       this.error.name= "";
       this.error.email= "";
       this.error.phone= "";
@@ -256,11 +241,9 @@ selectedDate.setHours(0, 0, 0, 0);
     }, 
     
   addandalert(card){
-      let filt = this.doctors.find((item) => item.id === card.id);
-
-      filt.alert = !filt.alert;
+      card.alert = !card.alert;
       let stop = setInterval(() => {
-        filt.alert = !filt.alert;
+      card.alert = !card.alert;
         this.opened = false;
       }, 3000);
 
@@ -269,14 +252,6 @@ selectedDate.setHours(0, 0, 0, 0);
       }, 3000);
 
       this.AddToCart(card.id);
-    },
-  filter(specs){
-    this.filterBoolean= false;
-    if(specs=="All"){
-      return this.filterBoolean;
-    }
-      this.filters= this.doctors.filter((item)=> item.specialty === specs);
-      this.filterBoolean=true;
     },
 },
 }

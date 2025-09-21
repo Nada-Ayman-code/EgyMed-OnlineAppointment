@@ -57,24 +57,26 @@ export default {
         this.darkmode = true;
         back.style.backgroundColor = "rgba(33, 37, 41, 0.8)";
         back.style.color = "#ffffff";
+        localStorage.setItem("darkmode", "true");
       } else {
         this.darkmode = false;
         back.style.backgroundColor = "white";
         back.style.color = "rgba(33, 37, 41, 0.8)";
+        localStorage.setItem("darkmode", "false");
       }
     },
     timerFun() {
-     let storedCart = JSON.parse(localStorage.getItem("cart")  || "[]");
-     this.cart= storedCart;
+      let storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+      this.cart = storedCart;
       let rep = setInterval(() => {
-        this.cart = JSON.parse(localStorage.getItem("cart")  || "[]");
+        this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
         const currTime = new Date();
 
         this.cart.forEach((item) => {
           let date = item.form.date;
           let time = item.form.time;
 
-            if (!date || !time) return; // skip invalid entries
+          if (!date || !time) return; // skip invalid entries
 
           const appTime = new Date(`${date}T${time}:00`);
 
@@ -99,8 +101,22 @@ export default {
       }, 1000);
     },
   },
+  //mounted:  runs once on reload
   mounted() {
     this.timerFun();
+
+    //darkmode on refresh
+    const back = document.querySelector("#app");
+    if(localStorage.getItem("darkmode") === "true"){
+        this.darkmode= true;
+        back.style.backgroundColor = "rgba(33, 37, 41, 0.8)";
+        back.style.color = "#ffffff";
+      }
+    else{
+        this.darkmode= false;
+        back.style.backgroundColor = "white";
+        back.style.color = "rgba(33, 37, 41, 0.8)";
+      }
   },
 };
 </script>
@@ -113,5 +129,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* margin-top: 60px; */
+}
+
+.card {
+  transition: all 1s ease 0s;
+}
+
+.card:hover {
+  scale: 1.06;
+  z-index: 9999;
 }
 </style>

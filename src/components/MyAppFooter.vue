@@ -1,6 +1,6 @@
 <template>
   <div
-    class="row bg-dark p-3 m-0 justify-content-center align-items-center mt-0"
+    class="row d-flex bg-dark p-3 m-0 justify-content-center align-items-center"
     style="
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
         Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
@@ -12,7 +12,7 @@
       class="text-decoration-none text-center text-secondary fs-4"
       >About</a
     ><br />
-    <div class="col-6 col-sm-10 col-md-6 col-lg-4 me-5 ms-5">
+    <div class="col-6">
       <h3 style="background-color: rgba(100, 149, 237, 0.6)">social media:</h3>
       <a href="#" class="text-decoration-none text-secondary"
         ><img style="width: 35px" src="@/assets/instagram.png" alt="insta" />
@@ -27,7 +27,7 @@
         <span class="fs-5"> X</span>
       </a>
     </div>
-    <div class="col-6 col-sm-10 col-md-6 col-lg-4 me-5 ms-3">
+    <div class="col-6 mb-2">
       <h3 style="background-color: rgba(100, 149, 237, 0.6)">Contact Info:</h3>
       <a href="" class="text-decoration-none text-secondary"
         ><img style="width: 25px" src="@/assets/whatsapp-icon.png" alt="" />
@@ -42,7 +42,7 @@
       >
     </div>
     <br />
-    <p class="text-secondary">&copy; 2025 EgyMed. All rights reserved.</p>
+    <p class="text-secondary mb-0 mt-4">&copy; 2025 EgyMed. All rights reserved.</p>
   </div>
 </template>
 
