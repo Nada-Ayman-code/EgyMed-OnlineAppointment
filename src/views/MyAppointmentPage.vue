@@ -2,8 +2,8 @@
 
 <div class="row justify-content-center align-items-center m-0 mt-5 mb-5">
   <p style="color:rgba(100, 149, 237, 0.9);" >Booked Appointments: {{cart.length}}</p>
-       <div class="col-7 col-sm-6 col-md-4 col-lg-8 border border-secondary rounded p-5" v-if="cart.length===0" style="background-color: rgb(211,211,211);">
-            <p>No Appointments Booked Yet.</p>
+       <div class="col-7 col-sm-6 col-md-4 col-lg-8 border border-secondary rounded p-5 mb-4" v-if="cart.length===0" style="background-color: rgb(211,211,211);">
+            <p class="mt-5 mb-5 p-5">No Appointments Booked Yet.</p>
        </div>
       <div class="col-11 border-secondary rounded p-5 " v-else-if="cart.length!==0" style="background-color: rgb(211,211,211);">
         <div class="row justify-content-center align-items-center">

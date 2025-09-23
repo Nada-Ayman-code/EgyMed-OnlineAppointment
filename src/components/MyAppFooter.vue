@@ -8,10 +8,15 @@
     "
   >
     <a
-      href="#about"
+      href="/patient#about"
       class="text-decoration-none text-center text-secondary fs-4"
       >About</a
     ><br />
+    <a
+      href="/patient#services"
+      class="text-decoration-none text-center text-secondary fs-4"
+      >Our Services</a
+    >
     <div class="col-6">
       <h3 style="background-color: rgba(100, 149, 237, 0.6)">social media:</h3>
       <a href="#" class="text-decoration-none text-secondary"

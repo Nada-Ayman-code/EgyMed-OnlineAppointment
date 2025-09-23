@@ -117,7 +117,7 @@
       </div>
     </div>
 
-    <div v-if="foundDoc">
+    <div v-if="foundDoc && filterBoolean===true">
        <div class="row justify-content-center align-items-center p-0 m-0 mt-5">
         <div
           class="card col-7 col-sm-6 col-md-6 col-lg-2 ms-4 g-3 shadow-lg"
@@ -294,7 +294,7 @@
         </div>
       </div>
     </div>
-    <div v-show="!filterBoolean">
+    <div v-if="filterBoolean === false">
       <button
         v-show="currpage != 1"
         @click="currpage--"
@@ -500,10 +500,10 @@ export default {
       this.AddToCart(card.id);
     },
     filter(specs) {
-      
       if (specs === "All") {
         this.filterBoolean = false;
-        return this.filterBoolean;
+        this.foundDoc= null;
+        return;
       }
       this.filters = this.doctors.filter((item) => item.specialty === specs);
       this.filterBoolean = true;
@@ -517,6 +517,7 @@ export default {
           let found= this.doctors.find((item)=> item.name === this.searchBar);
           if(found){
             this.foundDoc= found;
+            this.filterBoolean = true;
           }
           this.searchBar="";
     },
@@ -541,22 +542,3 @@ export default {
   },
 };
 </script>
-
-<!-- 
-<style>
-.modal {
-  display: block; /* v-show will hide/show */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; /* dark overlay */
-  overflow: auto;
-  z-index: 1000;
-}
-
-.modal-dialog {
-  margin: 10% auto;
-  max-width: 500px;
-}
-</style> -->

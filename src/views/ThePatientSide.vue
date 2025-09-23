@@ -9,7 +9,7 @@
     <div
       class="row d-flex flex-column bg-dark vh-100 m-0 p-0 align-items-center justify-content-center"
     >
-      <h1 ref="typewriter" class="text-white" style="z-index: 9999"></h1>
+      <h1 class="text-white" style="z-index: 9999"> <span v-for="(letter, i) in typewriter" :key="i">{{ letter }}</span><span class="border-right"></span> </h1>
       <div
         class="col-11 col-sm-11 col-md-8 col-lg-8 mb-5 mt-5 p-4 position-relative container border border-white rounded"
         style="background-color: rgba(255, 255, 255, 0.5)"
@@ -53,14 +53,16 @@
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+         </div>
+      </div><div id="about"></div>
+    
   </div>
 
   <div
     class="row m-0 align-items-center justify-content-center p-5 border-top border-bottom border-white"
   >
-    <h2
+  
+    <h2 
       ref="head1"
       class="mt-3"
       :style="{
@@ -101,7 +103,7 @@
       </div>
     </div>
   </div>
-
+<div id="services"></div>
   <div
     class="row m-0 p-5 align-items-center justify-content-center"
     :style="{
@@ -221,6 +223,7 @@ export default {
       searchBar: "",
       dropDown: false,
       selectedDoctor: null,
+      typewriter:"",
     };
   },
   methods: {
@@ -272,7 +275,7 @@ export default {
           let i=0
           setInterval( ()=>{
             if( i<header.length){
-              this.$refs.typewriter.textContent += header[i];
+              this.typewriter += header[i];
               i++;
             }
           } , 200)
@@ -307,5 +310,19 @@ h2{
   opacity: 0;
         transform: translateX(50px);
         transition: all 1s ease;
+}
+
+.border-right{
+  border-right: 2px solid white;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-delay: 8.25s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blink{
+  100%{
+     opacity: 0;
+  }
 }
 </style>
