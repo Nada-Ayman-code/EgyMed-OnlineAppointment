@@ -28,7 +28,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsetoggler">
-        <ul class="navbar-nav ms-auto w-50 justify-content-between">
+        <ul class="navbar-nav ms-auto justify-content-between">
           <li class="nav-item">
             <a
               class="nav-link fs-5 border-end me-0 ms-0 p-4"
