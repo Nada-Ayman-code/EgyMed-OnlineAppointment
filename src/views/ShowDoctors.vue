@@ -154,7 +154,7 @@
         class="col-5 col-sm-6 col-md-4 col-lg-2 modal"
         style="
           background-color: rgba(0, 0, 0, 0.5);
-          z-index: 9999;
+          z-index: 999999;
           display: block;
         "
         v-show="opened"
