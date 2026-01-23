@@ -352,7 +352,7 @@ export default {
   },
   methods: {
     async getDoctors() {
-      await fetch(`https://mocki.io/v1/6cb1f223-728a-4475-a559-166a23d453c0`)
+      await fetch(`https://mocki.io/v1/cd528972-9446-4388-a48d-0de416efe2cf`)
         .then((res) => res.json())
         .then((data) => {
           this.doctors = data;
