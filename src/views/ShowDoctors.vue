@@ -239,7 +239,7 @@
                     v-model="form.date"
                     placeholder="Date"
                     type="date"
-                    max="2026-01-01"
+                    max="2027-01-01"
                   />
                   <div
                     class="p-2 border border-danger text-danger"
@@ -352,7 +352,7 @@ export default {
   },
   methods: {
     async getDoctors() {
-      await fetch(`https://mocki.io/v1/cd528972-9446-4388-a48d-0de416efe2cf`)
+      await fetch(`https://mocki.io/v1/304a25dd-434b-4c1d-9fce-0cddf5653fa7`)
         .then((res) => res.json())
         .then((data) => {
           this.doctors = data;
@@ -455,7 +455,7 @@ export default {
       //Date validation (4 validation requirements): not empty/ no past/ future limit/ trim
       const currDate = new Date();
       const selectedDate = new Date(this.form.date);
-      const futureLimit = new Date("2026-01-01");
+      const futureLimit = new Date("2027-01-01");
 
       currDate.setHours(0, 0, 0, 0);
       selectedDate.setHours(0, 0, 0, 0);

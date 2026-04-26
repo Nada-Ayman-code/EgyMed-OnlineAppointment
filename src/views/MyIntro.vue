@@ -15,8 +15,12 @@
     >
       <h1 class="mb-5">👋 Welcome to Our Healthcare Platform</h1>
       <p>Please choose how you’d like to continue:</p>
-      <router-link to="/doctor" class="btn btn-lg p-3 btn-dark bg-black"
-        >👨‍⚕️ I’m a Doctor</router-link
+      <!-- Doctor page is still under construction  btn btn-lg -->
+      <router-link
+        to="/doctor"
+        class="btn btn-lg p-3 btn-dark bg-black"
+        @click.prevent
+        >👨‍⚕️ I’m a Doctor (Coming Soon)</router-link
       >
       <button
         @click="$router.push('/patient')"
