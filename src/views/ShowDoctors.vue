@@ -10,7 +10,7 @@
         @focus="showSearchlist = true"
         @blur="showSearchlist = false"
       />
-      <button @click="showcard" class="btn btn-light p-4 rounded-end-pill border">🔍</button>
+      <button @click="showcard" class="btn btn-light p-4 rounded-end-pill border" style="transform: translateY(-1px)">🔍</button>
 
       <div
         v-if="showSearchlist"

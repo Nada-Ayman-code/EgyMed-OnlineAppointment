@@ -20,6 +20,7 @@
         </p>
 
         <!-- SearchBar -->
+<div class="position-relative d-inline-block">
         <input
           type="text"
           id="search"
@@ -31,29 +32,32 @@
         />
         <button
           class="btn btn-light border rounded-end-pill p-1"
+          style="transform: translateY(-1px)"
           @click="showCard"
         >
           🔍
         </button>
 
-        <docs v-if="selectedDoctor" :doctor="selectedDoctor" />
+       <!-- <docs v-if="selectedDoctor" :doctor="selectedDoctor" /> --> 
 
         <div
           v-show="dropDown"
           class="position-absolute border bg-white rounded"
-          style="left: 40%; right: 42%; width: 200px;"
+          style="top: 100%; left: 0; width: 200px; z-index: 99999"
         >
           <ul class="bg-white" v-for="doc in filteredDoc" :key="doc.id">
             <li
               class="btn list-group-item ms-0 me-4 "
-              style="z-index: 99999"
               @mousedown="inputVal(doc.name)"
             >
               {{ doc.name || doc.specialty }}
             </li>
           </ul>
         </div>
+      </div>
+      <docs v-if="selectedDoctor" :doctor="selectedDoctor" />
          </div>
+
       </div><div id="about"></div>
     
   </div>
