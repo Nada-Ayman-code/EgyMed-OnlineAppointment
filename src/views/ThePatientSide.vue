@@ -32,7 +32,7 @@
         />
         <button
           class="btn btn-light border rounded-end-pill p-1"
-          style="transform: translateY(-1px)"
+          style="transform: translateY(-0.97px)"
           @click="showCard"
         >
           🔍
